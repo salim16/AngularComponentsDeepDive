@@ -21,6 +21,12 @@ export class CockpitComponent implements OnInit {
 
   }
 
+  // Notes
+  // There are 3 ways to access HTML element inside .ts files,
+  // First way is to create a reference in the template and pass that into the method.
+  // Second way is to create a ViewChild ElementRef inside the template and then use it.
+  // Third way is to use ngContent way to force angular to consider whats inside the selector of the comp
+
   // onAddServer() {
   //   this.serverOrBlueprintCreated.emit({
   //     type: 'server',

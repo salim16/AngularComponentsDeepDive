@@ -30,4 +30,15 @@ export class AppComponent implements OnInit {
   //     content: blueprintData.blueprintContent
   //   });
   // }
+
+  onChangeFirst() {
+    // Doing this would trigger new javascript object in the memory, that means new component itself
+    //this.serverElements[0] = {type: 'server', name: 'Changed', content: 'also changed!'};
+
+    this.serverElements[0].name = 'changed!';
+  }
+
+  onDestroyFirst() {
+    this.serverElements.splice(0,1);
+  }
 }
