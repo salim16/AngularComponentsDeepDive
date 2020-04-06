@@ -9,8 +9,11 @@ import { Component,
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy} 
+  OnDestroy,
+  ViewChild,
+  ElementRef} 
 from '@angular/core';
+import { staticViewQueryIds } from '@angular/compiler';
 
 @Component({
   selector: 'app-server-element',
@@ -33,6 +36,7 @@ export class ServerElementComponent implements
 
   // @Input("srvElement") serverElement: { type: string, name: string, content: string };
   @Input() name: string;
+  @ViewChild('heading', {static: true}) header: ElementRef;
 
   constructor() {
     console.log('constructor called!');
@@ -46,6 +50,7 @@ export class ServerElementComponent implements
 
   ngOnInit() {
     console.log('ngOnInit called!');
+    console.log('Test Content: ' + this.header.nativeElement.textContent);
   }
 
   ngDoCheck(): void {
@@ -63,6 +68,9 @@ export class ServerElementComponent implements
             //  <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
           //</p>
       //</app-server-element>
+
+      // You get access to Component content at this stage only
+      console.log('Test Content: ' + this.header.nativeElement.textContent);
   }
 
   ngAfterContentChecked(): void {
@@ -71,6 +79,8 @@ export class ServerElementComponent implements
 
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit called!');
+    // You only get access to the template elements in this stage ...
+    console.log('Test Content: ' + this.header.nativeElement.textContent);
   }
   ngAfterViewChecked(): void {
     console.log('ngAfterViewChecked called!');
